@@ -80,7 +80,7 @@ function PracticeProblems(props) {
                 }
             )
         }
-        fetch("https://zenseprojectcodecase.herokuapp.com/problems/", {
+        fetch("https://codecasebackend.herokuapp.com/problems/", {
             method : 'get',
             headers: new Headers({
                 Authorization: "Bearer " + localStorage.getItem('token'),
@@ -197,7 +197,7 @@ function PracticeProblems(props) {
                 console.log("allprob", allprob)
                 console.log("res", res);
                 setload(2);
-                axios.post('https://zenseprojectcodecase.herokuapp.com/problems/upd', {
+                axios.post('https://codecasebackend.herokuapp.com/problems/upd', {
                     username: localStorage.getItem('username'),
                     problems: temp1
                 }).then((res) => {
