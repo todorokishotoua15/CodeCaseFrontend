@@ -79,6 +79,12 @@
   margin-bottom: 0em;
 }
 
+@media screen and (min-width: 1000px) {
+  .mt-long {
+    margin-top: 3rem;
+  }
+}
+
 .App {
   text-align: center;
 }
@@ -190,6 +196,287 @@
   object-fit: cover;
   height: 665px;
 }
+
+.loginback { 
+  background-image: url("../public/images/front4.jpg");
+  background-size: cover;
+  background-size: 100% 100%;
+  
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .loginbody {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 5%;
+    bottom: 5%;
+    background-color: #ffffff;
+  }
+  /* .login_placeholder {
+    padding-right: 1rem;
+  } */
+}
+
+@media screen and (max-width: 992px) {
+  .loginbody {
+    position: fixed;
+    left : 0;
+    right: 0;
+    top: 5%;
+    bottom: 5%;
+    background-color: #ffffff;
+  }
+  .login_placeholder {
+    margin-left: 1rem;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .loginbody {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 5%;
+    bottom: 5%;
+    background-color: #ffffff;
+  }
+}
+
+.loginbody {
+  /* position: fixed;
+  
+  left: 15%;
+  right: 25%;
+  top: 10%;
+  bottom: 10%;
+  background-color: #ffffff; */
+  /* border: 2px solid greenyellow; */
+  
+  
+}
+
+/* .modal-backdrop {
+  background-color: transparent;
+} */
+.modalbody{
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.circle {
+  height: 25px;
+  width: 25px;
+  background-color: rgb(10, 10, 10);
+  border-radius: 50%;
+  
+}
+
+.circ-row {
+  margin-top: 20rem;
+}
+
+/* .mm1 {
+  margin-left: 20rem;
+} */
+
+.circ1 {
+  animation: circ1_animation 5s infinite linear;
+}
+
+.circ2 {
+  animation: circ2_animation 5s infinite linear;
+  animation-delay: 0.2s;
+}
+
+
+/* @keyframes circ1_animation {
+  0% {
+    transform: translate(0%);
+  }
+  50% {
+    transform: translate(500px);
+  }
+}
+
+@keyframes circ2_animation {
+  0% {
+    transform: translate(0%);
+  }
+  50% {
+    transform: translate(450px);
+  }
+} */
+
+.skel_nav {
+  height: 7vh;
+  background-color: #808a90;
+  animation:  skeleton-loading 3s linear infinite alternate;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-color: #808a90;
+  }
+  100% {
+    background-color: hsl(200, 20%, 95%);
+  }
+}
+
+@keyframes skeleton-loading2 {
+  0% {
+    background-color: #dfe3e6;
+  }
+  100% {
+    background-color: #f5f7f9;
+  }
+}
+
+.skel_nav1 {
+  background-color: #dfe3e6;
+  animation:  skeleton-loading2 1s linear infinite alternate;
+}
+
+.skel_button {
+  background-color: #dfe3e6;
+  height: 7vh;
+  border-radius: 8%;
+  animation:  skeleton-loading2 1s linear infinite alternate;
+}
+
+.skel_head1 {
+  background-color: #dfe3e6;
+  height: 2vh;
+  width: 34vw;
+  animation:  skeleton-loading2 1s linear infinite alternate;
+}
+
+.skel_circ {
+  background-color: #dfe3e6;
+  height: 30vh;
+  width: 15vw;
+  border-radius: 50%;
+  animation:  skeleton-loading2 1s linear infinite alternate;
+}
+
+.skel_row1 {
+  width: 20vw;
+
+}
+
+.skel_loading {
+    
+}
+
+@media screen and (max-width: 768px) {
+  .skel_circ {
+    height: 15vh;
+    width: 25vw;
+  }
+}
+
+@media screen and (min-height: 1100px) {
+  .skel_circ {
+    width: 35vw;
+    height: 20vh;
+  }
+}
+
+.login_modal_body{
+  font-family: Brush Script MT, Brush Script Std, cursive;
+}
+
+.cursive {
+  font-family: Brush Script MT, Brush Script Std, cursive;
+}
+
+.cursive1 {
+  font-family:  FreeMono, monospace;
+}
+
+.hor_line {
+  width: 100%;
+  height: 1px;
+  background: #050505;
+  margin: 20px 0;
+  display: block;
+  border: none;
+  
+}
+
+.login_head {
+  font-weight: bold;
+}
+
+.login_para {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 120%;
+  
+}
+
+.login_sub {
+  margin-top: 3rem;
+}
+
+.for_pass {
+  text-decoration: none;
+  color: #000000;
+}
+
+.for_pass:hover {
+  color: #525050;
+}
+
+.texts {
+  font-size: 450%;
+}
+
+.texts1 {
+  font-size: 150%;
+}
+
+.texts2 {
+  font-size: 100%;
+}
+
+.nopadd {
+  padding: 0;
+}
+.nomarg {
+  margin: 0;
+}
+.hund_height {
+  height: 100%;
+  /* border: 2px solid black; */
+}
+
+.hund_width {
+  width: 100%;
+}
+.media_img {
+  
+}
+
+.c1 {
+  border: 5px solid yellow;
+}
+
+.c2 {
+  border: 5px solid pink;
+
+}
+
+.c3 {
+  border: 5px solid greenyellow;
+  
+  
+}
+
+.center_text {
+  text-align: center;
+}
 .navv {
   margin-left: 20px;
 }
@@ -222,6 +509,10 @@
 
 .btn1 {
   width: 150px;
+}
+
+.mt-6{
+  margin-top: 5rem;
 }
 
 .mt-7 {
@@ -314,6 +605,13 @@
   margin:0px auto;
   padding: 30px 0px 50px 0px;
   border-bottom: 2px ridge;
+  min-height:100px;
+}
+
+.row-content2 {
+  margin:0px auto;
+  padding: 30px 0px 50px 0px;
+
   min-height:100px;
 }
 

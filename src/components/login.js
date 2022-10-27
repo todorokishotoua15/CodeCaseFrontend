@@ -11,7 +11,8 @@ import Two from './2.jpg';
 import Three from './3.jpg';
 import Foot from './Footer';
 import Navb from './Navbar';
-import { Navigate } from 'react-router-dom';
+import LoginPage from "./loginpage";
+import { Navigate, useNavigate } from 'react-router-dom';
 
 function Login(props) {
     
@@ -33,6 +34,12 @@ function Login(props) {
             
         }
     })
+    let navigate = useNavigate();
+    function login_func() {
+        
+        let path = "/login";
+        navigate(path);
+    }
 
     function toggleModal(props) {
         setModalOpen(!isModelOpen);
@@ -42,66 +49,7 @@ function Login(props) {
         setModal2Open(!isModel2Open);
     }
 
-    function login(event) {
-        var rating = -1;
-        fetch("https://codeforces.com/api/user.info?handles=" + username.value)
-        .then((res) => res.json())
-        .then((res) => {
-            var result = res.result[0];
-            rating = result.rating;
-            console.log(rating);
-            axios.post("https://codecasebackend.herokuapp.com/users/updrating", {
-                username : username.value,
-                rating: rating
-            })
-            .then(
-                (res) => {
-                    console.log(res);
-                    axios.post('https://codecasebackend.herokuapp.com/users/login', {
-                        username: username.value,
-                        password: password.value,
-                        rating: rating
-                    })
-                    .then(function (response) {
-                        localStorage.setItem('token', response.data.token);
-                        localStorage.setItem('username', username.value);
-                        setredirect(true);
-                    })
-                    .catch(function (error) {
-                        alert("Invalid Credentials!");
-                        console.log(error);
-                        setredirect(false);
-                    });
-                },
-                (err) => {
-                    console.log(err);
-                }
-            )
-            
-        }, (err) => {
-            axios.post('https://codecasebackend.herokuapp.com/users/login', {
-                username: username.value,
-                password: password.value,
-                rating : -1
-            })
-            .then(function (response) {
-                localStorage.setItem('token', response.data.token);
-                localStorage.setItem('username', username.value);
-                setredirect(true);
-            })
-            .catch(function (error) {
-                alert("Invalid Credentials!");
-                console.log(error);
-                setredirect(false);
-            });
-            alert("Rating fetch failed, please try re-logging");
-        })
-        
-        
-        toggleModal();
-        
-        
-    }
+    
 
     function signup() {
         toggleModal2();
@@ -125,7 +73,7 @@ function Login(props) {
     return (
         <div>
             {redirect ? <Navigate to="/dashboard"></Navigate> : null}
-            <Modal isOpen={isModelOpen} toggle={toggleModal} >
+            {/* <Modal isOpen={isModelOpen} toggle={toggleModal} >
                 <ModalHeader toggle={toggleModal} charCode="Y" className='modhead'>Login</ModalHeader>
                 <ModalBody>
                     <Form>
@@ -144,7 +92,7 @@ function Login(props) {
                     <Button color="primary" type='submit' value="submit" onClick={login}>Submit</Button>{' '}
                     <Button color="secondary" onClick={toggleModal}>Cancel</Button>
                 </ModalFooter>
-            </Modal>
+            </Modal> */}
             <Modal isOpen={isModel2Open} toggle={toggleModal2} >
                 <ModalHeader toggle={toggleModal2} charCode="Y">Sign Up</ModalHeader>
                 <ModalBody>
@@ -192,7 +140,7 @@ function Login(props) {
                         </div>
                         <div className='row gx-5 mt-10 mt-8'>
                             <div className='col-12 col-md-4 offset-md-2'>
-                                <button className='btn btn-lg btn-outline-light w-100' onClick={toggleModal}>
+                                <button className='btn btn-lg btn-outline-light w-100' onClick={login_func}>
                                     Login
                                 </button>
                             </div>

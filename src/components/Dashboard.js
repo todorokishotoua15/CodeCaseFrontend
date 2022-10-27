@@ -4,6 +4,8 @@ import { Table, Button, Modal, ModalBody, ModalFooter, Input, Label,
 import Navb2 from "./Navbar2";
 import Foot from "./Footer";
 import CanvasJSReact from '../canvasjs.react';
+import axios from 'axios';
+
 import { useNavigate } from "react-router";
 var CanvasJS = CanvasJSReact.CanvasJS;
 var CanvasJSChart = CanvasJSReact.CanvasJSChart
@@ -13,13 +15,20 @@ function Dashboard(props) {
 
     const[solved, setsolved] = useState([]);
     const[loaded, setloaded] = useState(false);
+    const[loaded1,setloaded1] = useState(false);
     const[err, seterr] = useState(null);
     const[solvedTags, setsolvedTags] = useState([]);
     const[pendproblems, setpendproblems] = useState([]);
     const [ploaded, setploaded] = useState(false);
-    
+    const [loggedin, setloggedin] = useState(false);
+    const [username, setusername] = useState('');
+    const [password, setpassword] = useState('');
+    const [firstname, setfirstname] = useState('');
+    const [lastname, setlastname] = useState('');
+    const [redirect, setredirect] = useState(false);
     
     useEffect(() => {
+
         if (solvedTags.length === 0) {
             fetch("https://codeforces.com/api/user.status?handle=" + localStorage.getItem('username') +"&verdict=OK")
             .then((res) => res.json())
@@ -29,7 +38,7 @@ function Dashboard(props) {
                     console.log(res);
                     console.log(res.result);
                     setsolved(res.result);
-                    setloaded(true);
+                    
                     var temp = [];
                     for (var i = 0; i < solved.length; i++) {
                         for (var j = 0; j < solved[i].problem.tags.length; j++) {
@@ -50,7 +59,7 @@ function Dashboard(props) {
                             }
                         }
                     }
-                    
+                    setloaded(true);
                     setsolvedTags(temp);
                     console.log("solvedTags: ", solvedTags);
                 },
@@ -72,6 +81,7 @@ function Dashboard(props) {
         .then(
             (res) => {
                 setpendproblems(res);
+                setloaded1(true);
             },
             (err) => {
                 console.log(err);
