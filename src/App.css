@@ -408,6 +408,13 @@
 
 .login_head {
   font-weight: bold;
+
+}
+
+.login_head_anchor {
+  text-decoration: none;
+  font-size: 250%;
+  color:#000000;
 }
 
 .login_para {

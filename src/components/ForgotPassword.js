@@ -20,47 +20,63 @@ function ForgotPassword(){
     const [reset, setreset] = useState(false);
     const [newpass, setnewpass] = useState("");
     const [isOpen,setisOpen] = useState(false);
+    let navigate = useNavigate();
 
     function handleSubmit() {
         setisOpen(true);
         console.log(username.value);
-        axios.post("http://localhost:3001/forgotpass/", {
-                username: username.value,
-                email: email.value
-            
-        })
-        .then((res) => {
-            console.log(res.data.otp);
-            setotp(res.data.otp)
-            setisOpen(false);
-            localStorage.setItem('email', email.value);
-            localStorage.setItem('username', username.value);
+        axios.post("http://localhost:3001/users/findemail", {
+            username: username.value
+        }).then((res) => {
+            var email1 = res.data.email;
+            console.log(email1)
+            axios.post("http://localhost:3001/forgotpass/", {
+                    username: username.value,
+                    email: email1
+                
+            })
+            .then((res) => {
+                console.log(res.data.otp);
+                setotp(res.data.otp)
+                setisOpen(false);
+                localStorage.setItem('username', username.value);
 
+            }).catch((err) => {
+                console.log(err);
+                alert("An error occured!");
+                setisOpen(false);
+            })
         }).catch((err) => {
             console.log(err);
-            alert("An error occured!");
-            setisOpen(false);
+            alert('Could not find your email!')
         })
+        
     }
 
     function validate_otp() {
         console.log(localStorage.getItem('email'));
-        axios.post("http://localhost:3001/forgotpass/validate", {
-            otp: otp_entered.value,
-            email: localStorage.getItem('email')
-        }).then((res)=> {
-            if (res.data.validation === "success") {
-                setreset(true);
-            }
-            else {
-                alert("Wrong OTP!");
-                setreset(false);
-            }
-        }) .catch((err) => {
-            console.log(err);
-            alert("An error has occured!");
-            setreset(false);
-        })
+        axios.get("http://localhost:3001/forgotpass/clearall")
+            .then((res) => {
+                axios.post("http://localhost:3001/forgotpass/validate", {
+                    otp: otp_entered.value,
+                    email: localStorage.getItem('email')
+                }).then((res)=> {
+                    if (res.data.validation === "success") {
+                        setreset(true);
+                    }
+                    else {
+                        alert("Wrong OTP!");
+                        setreset(false);
+                    }
+                }) .catch((err) => {
+                    console.log(err);
+                    alert("An error has occured!");
+                    setreset(false);
+                })
+            }).catch((err) => {
+                console.log(err);
+                alert("An error occured!");
+            })
     }
 
     function reset_pass() {
@@ -75,6 +91,8 @@ function ForgotPassword(){
             setotp("");
             alert("Password changed successfully!")
             setisOpen(false);
+            let path = "/login";
+            navigate(path);
         }).catch((err) => {
             alert("An error occured!");
         })
@@ -184,12 +202,7 @@ function ForgotPassword(){
                                         <Input type="text"  className="cursive1 texts2" placeholder="codeforces username" innerRef={(inp) => setusername(inp)}> </Input>
                                         </div>
                                     </div>
-                                    <div className="form-group row">
-                                        <label htmlFor="inputPassword" className="col-12 col-md-4 col-form-label cursive1 texts1 mt-2">Email</label>
-                                        <div className="col-11 col-md-7 mt-3 login_placeholder">
-                                        <Input type="email" className="form-control cursive1 texts2" id="inputPassword" placeholder="Email" innerRef={(inp) => setemail(inp)}> </Input>
-                                        </div>
-                                    </div>
+                                    
                                     
                                     
                                 </form>

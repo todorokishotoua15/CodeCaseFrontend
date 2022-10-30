@@ -52,19 +52,8 @@ function Login(props) {
     
 
     function signup() {
-        toggleModal2();
-        axios.post('https://codecasebackend.herokuapp.com/users/signup', {
-            username: username.value,
-            password: password.value,
-            firstname: firstname.value,
-            lastname: lastname.value
-        })
-        .then(function (response) {
-            console.log(response);
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
+        let path = "/signup";
+        navigate(path);
         
     }
 
@@ -145,7 +134,7 @@ function Login(props) {
                                 </button>
                             </div>
                             <div className='col-12 col-md-4 '>
-                                <button className='btn btn-lg btn-outline-light btn-block w-100' onClick={toggleModal2}>
+                                <button className='btn btn-lg btn-outline-light btn-block w-100' onClick={signup}>
                                     SignUp
                                 </button>
                             </div>

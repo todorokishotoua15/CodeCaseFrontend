@@ -10,6 +10,7 @@ import PracticeWeakConcept from './components/PracticeWeakConcept';
 import ContactUs from './components/contactus';
 import LoginPage from './components/loginpage';
 import ForgotPassword from './components/ForgotPassword';
+import Signup from './components/signup';
 
 function App() {
   const [token, settoken] = useState('');
@@ -33,6 +34,7 @@ function App() {
             <Route path='/contactus' element={<ContactUs/>}></Route>
             <Route path='/login' element={<LoginPage/>}></Route>
             <Route path='/forgotpass' element={<ForgotPassword/>}></Route>
+            <Route path='/signup' element={<Signup/>}></Route>
         </Routes>
     </BrowserRouter>
     </div>
