@@ -25,12 +25,12 @@ function ForgotPassword(){
     function handleSubmit() {
         setisOpen(true);
         console.log(username.value);
-        axios.post("http://localhost:3001/users/findemail", {
+        axios.post("https://codecasebackend.herokuapp.com/users/findemail", {
             username: username.value
         }).then((res) => {
             var email1 = res.data.email;
             console.log(email1)
-            axios.post("http://localhost:3001/forgotpass/", {
+            axios.post("https://codecasebackend.herokuapp.com/forgotpass/", {
                     username: username.value,
                     email: email1
                 
@@ -55,9 +55,9 @@ function ForgotPassword(){
 
     function validate_otp() {
         console.log(localStorage.getItem('email'));
-        axios.get("http://localhost:3001/forgotpass/clearall")
+        axios.get("https://codecasebackend.herokuapp.com/forgotpass/clearall")
             .then((res) => {
-                axios.post("http://localhost:3001/forgotpass/validate", {
+                axios.post("https://codecasebackend.herokuapp.com/forgotpass/validate", {
                     otp: otp_entered.value,
                     email: localStorage.getItem('email')
                 }).then((res)=> {
@@ -83,7 +83,7 @@ function ForgotPassword(){
         var username1 = localStorage.getItem('username');
         var email = localStorage.getItem('email');
         setisOpen(true);
-        axios.post("http://localhost:3001/forgotpass/changepass", {
+        axios.post("https://codecasebackend.herokuapp.com/forgotpass/changepass", {
             username:username1,
             password: newpass.value
         }).then((res) => {
