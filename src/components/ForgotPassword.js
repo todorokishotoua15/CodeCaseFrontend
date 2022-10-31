@@ -29,7 +29,8 @@ function ForgotPassword(){
             username: username.value
         }).then((res) => {
             var email1 = res.data.email;
-            console.log(email1)
+            console.log(email1);
+            localStorage.setItem('email',email1);
             axios.post("https://codecasebackend.herokuapp.com/forgotpass/", {
                     username: username.value,
                     email: email1
